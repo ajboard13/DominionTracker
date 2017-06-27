@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "450009917595",
+    "firebase_url": "https://dominioncounter.firebaseio.com",
+    "project_id": "dominioncounter",
+    "storage_bucket": "dominioncounter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450009917595:android:a7ef5fc9df1875dd",
+        "android_client_info": {
+          "package_name": "com.example.android.dominiontracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "450009917595-b5noo0ab1jp7g7vmap5l2kq981045nv2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_f1QZiMoKUOHVT_flAI14tf3mZ64LfuM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
