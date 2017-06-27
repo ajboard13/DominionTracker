@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="game_types">
+        <item>2 Player Leader Board</item>
+        <item>3 Player Leader Board</item>
+        <item>4 Player Leader Board</item>
+    </string-array>
+</resources>

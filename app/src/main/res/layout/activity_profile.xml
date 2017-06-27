@@ -12,26 +12,32 @@
 
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:orientation="vertical">
 
         <TextView
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/textViewUserEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/textViewUserEmail"
-            android:text="Large text"/>
+            android:text="Large text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+        <ListView
+            android:id="@+id/games_listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <Button
-            android:text="Sign Out"
+            android:id="@+id/buttonSignOut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonSignOut"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:text="Sign Out" />
 
     </LinearLayout>
 </RelativeLayout>
