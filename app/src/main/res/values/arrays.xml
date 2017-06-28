@@ -5,4 +5,19 @@
         <item>3 Player Leader Board</item>
         <item>4 Player Leader Board</item>
     </string-array>
+    <string-array name="leaders" >
+        <item>Aaron</item>
+        <item>Power Gap</item>
+        <item>Josh</item>
+        <item>Brian</item>
+        <item>Power Gap</item>
+        <item>Troy</item>
+        <item>Mike</item>
+        <item>Power Gap</item>
+        <item>Matt</item>
+        <item>Power Gap</item>
+        <item>Kyle</item>
+        <item>Power Gap</item>
+        <item>Dan</item>
+    </string-array>
 </resources>
