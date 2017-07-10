@@ -18,8 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".ProfileActivity"></activity>
-        <activity android:name=".LeaderBoardActivity"></activity>
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".LeaderBoardActivity" />
+        <activity android:name=".AddGameActivity"></activity>
     </application>
 
 </manifest>
