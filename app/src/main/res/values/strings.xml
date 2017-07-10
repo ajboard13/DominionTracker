@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">DominionTracker</string>
+    <string name="add_game_button">Add Game</string>
+    <string name="how_many_players">How many Players?</string>
+    <string name="who_won">Who won?</string>
+    <string name="sign_out">Sign Out</string>
 
 </resources>

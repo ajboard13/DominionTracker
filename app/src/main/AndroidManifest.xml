@@ -20,7 +20,14 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".LeaderBoardActivity" />
-        <activity android:name=".AddGameActivity"></activity>
+        <activity android:name=".AddGameActivity"
+            android:label="@string/add_game_button"
+            android:parentActivityName=".ProfileActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ProfileActivity"/>
+
+        </activity>
     </application>
 
 </manifest>

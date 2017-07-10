@@ -2,6 +2,7 @@ package com.example.android.dominiontracker;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +19,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private FirebaseAuth firebaseAuth;
     private TextView textViewUserEmail;
     private Button buttonSignOut;
+    private Button buttonAddGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         textViewUserEmail = (TextView) findViewById(R.id.textViewUserEmail);
         buttonSignOut = (Button) findViewById(R.id.buttonSignOut);
+        buttonAddGame = (Button) findViewById(R.id.buttonAddGame);
         ListView gameTypeList = (ListView) findViewById(R.id.games_listview);
 
 
@@ -54,6 +57,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         textViewUserEmail.setText("Welcome " + user.getEmail());
 
         buttonSignOut.setOnClickListener(this);
+        buttonAddGame.setOnClickListener(this);
     }
 
 
@@ -63,6 +67,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             firebaseAuth.signOut();
             finish();
             startActivity(new Intent(this, LoginActivity.class));
+        }
+        if (view == buttonAddGame){
+            startActivity(new Intent(this, AddGameActivity.class));
         }
     }
 

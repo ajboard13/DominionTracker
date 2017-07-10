@@ -5,6 +5,11 @@
         <item>3 Player Leader Board</item>
         <item>4 Player Leader Board</item>
     </string-array>
+    <string-array name="game_type">
+        <item>2 Players</item>
+        <item>3 Players</item>
+        <item>4 Players</item>
+    </string-array>
     <string-array name="leaders">
         <item>1st Place\n
             <sub-item>Aaron</sub-item>
@@ -28,4 +33,25 @@
             <sub-item>Aaron</sub-item>
         </item>
     </string-array>
+    <string-array name="players">
+        <item>Aaron
+        </item>
+        <item>Matt
+        </item>
+        <item>Brian
+        </item>
+        <item>Troy
+        </item>
+        <item>Mike
+        </item>
+        <item>Drew
+        </item>
+        <item>Zach
+        </item>
+        <item>Josh
+        </item>
+        <item>Dan
+        </item>
+    </string-array>
+
 </resources>
