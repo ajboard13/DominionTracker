@@ -121,6 +121,16 @@ public class AddGameActivity extends AppCompatActivity implements View.OnClickLi
             players[i] = spinners.get(i).getItemName();
         }
         Game game = new Game(gameType, Arrays.asList(players), winner, date);
+        createUniqueGameID();
+
+        String gameID = "Game"+gameNum;
+
+        databaseReference.child("Games").child(gameID).setValue(game);
+        System.out.println("Game Added");
+
+    }
+
+    private void createUniqueGameID() {
         Query myRef = databaseReference.child("Games");
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -148,12 +158,6 @@ public class AddGameActivity extends AppCompatActivity implements View.OnClickLi
 
             }
         });
-
-        String gameID = "Game"+gameNum;
-
-        databaseReference.child("Games").child(gameID).setValue(game);
-        System.out.println("Game Added");
-
     }
 
     @Override
@@ -162,4 +166,6 @@ public class AddGameActivity extends AppCompatActivity implements View.OnClickLi
             addGame(playerSpinners, winnerSpinner);
         }
     }
+
+
 }
