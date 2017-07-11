@@ -20,13 +20,21 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".LeaderBoardActivity" />
-        <activity android:name=".AddGameActivity"
+        <activity
+            android:name=".AddGameActivity"
             android:label="@string/add_game_button"
             android:parentActivityName=".ProfileActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ProfileActivity"/>
-
+                android:value=".ProfileActivity" />
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".ProfileActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.dominiontracker.ProfileActivity" />
         </activity>
     </application>
 
