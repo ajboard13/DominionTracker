@@ -11,8 +11,12 @@ import android.widget.Spinner;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,6 +31,7 @@ public class AddGameActivity extends AppCompatActivity implements View.OnClickLi
      String[] playerList;
     ArrayList<PlayerSpinners> playerSpinners;
     Spinner winnerSpinner;
+    int gameNum = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,10 +121,37 @@ public class AddGameActivity extends AppCompatActivity implements View.OnClickLi
             players[i] = spinners.get(i).getItemName();
         }
         Game game = new Game(gameType, Arrays.asList(players), winner, date);
+        Query myRef = databaseReference.child("Games");
+        myRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                gameNum++;
+            }
 
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-        databaseReference.child(user.getUid()).setValue(game);
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                gameNum--;
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        String gameID = "Game"+gameNum;
+
+        databaseReference.child("Games").child(gameID).setValue(game);
         System.out.println("Game Added");
 
     }
