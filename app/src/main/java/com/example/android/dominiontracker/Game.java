@@ -8,6 +8,7 @@ Aaron Board
 
 public class Game {
     public GameType gameType;
+    public String[] players;
     public String winner;
     public String date;
 
