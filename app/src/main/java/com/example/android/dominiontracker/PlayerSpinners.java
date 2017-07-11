@@ -24,4 +24,8 @@ public class PlayerSpinners {
     public String[] getList() {
         return list;
     }
+
+    public String getItemName(){
+        return spinner.getSelectedItem().toString();
+    }
 }

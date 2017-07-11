@@ -6,14 +6,27 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
-public class AddGameActivity extends AppCompatActivity  {
+public class AddGameActivity extends AppCompatActivity implements View.OnClickListener {
+    private DatabaseReference databaseReference;
     private Button addGameButton;
     private int numPlayers;
+    private String gameType;
+    private FirebaseAuth firebaseAuth;
+     String[] playerList;
+    ArrayList<PlayerSpinners> playerSpinners;
+    Spinner winnerSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +35,15 @@ public class AddGameActivity extends AppCompatActivity  {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         String[] gameTypeList = getResources().getStringArray(R.array.game_type);
-        final String[] playerList = getResources().getStringArray(R.array.players);
-        Spinner winnerSpinner = (Spinner) findViewById(R.id.list_of_players);
+        playerList = getResources().getStringArray(R.array.players);
         Spinner gameTypeSpinner = (Spinner) findViewById(R.id.players_spinner);
+        winnerSpinner  = (Spinner) findViewById(R.id.list_of_players);
+        playerSpinners  = populateListOfSpinners(playerList);
         populateSpinners(gameTypeList, gameTypeSpinner);
         populateSpinners(playerList, winnerSpinner);
-        final ArrayList<PlayerSpinners> playerSpinners = populateListOfSpinners(playerList);
+        firebaseAuth = FirebaseAuth.getInstance();
+        addGameButton = (Button) findViewById(R.id.add_game_button);
+
         gameTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -41,7 +57,14 @@ public class AddGameActivity extends AppCompatActivity  {
             }
         });
 
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        addGameButton.setOnClickListener(this);
+
+
+
     }
+
 
     private ArrayList<PlayerSpinners> populateListOfSpinners(String[] playerList){
         ArrayList<PlayerSpinners> playerSpinners = new ArrayList<>();
@@ -61,14 +84,17 @@ public class AddGameActivity extends AppCompatActivity  {
             case 2:
                 spinners.get(3).getSpinner().setVisibility(View.INVISIBLE);
                 spinners.get(2).getSpinner().setVisibility(View.INVISIBLE);
+                gameType = "Two Player";
                 break;
             case 3:
                 spinners.get(3).getSpinner().setVisibility(View.INVISIBLE);
                 spinners.get(2).getSpinner().setVisibility(View.VISIBLE);
+                gameType = "Three Player";
                 break;
             case 4:
                 spinners.get(3).getSpinner().setVisibility(View.VISIBLE);
                 spinners.get(2).getSpinner().setVisibility(View.VISIBLE);
+                gameType = "Four Player";
                 break;
             default:
                 break;
@@ -81,7 +107,27 @@ public class AddGameActivity extends AppCompatActivity  {
         spinner.setAdapter(spinnerArrayAdapter);
     }
 
-    private void addGame(){
+    private void addGame(ArrayList<PlayerSpinners> spinners, Spinner winnerSpinner){
+        String[] players = new String[numPlayers];
+        EditText dateEditText = (EditText) findViewById(R.id.dateEditText);
+        String date = dateEditText.getText().toString();
+        String winner = winnerSpinner.getSelectedItem().toString();
+        for (int i = 0; i < numPlayers; i++) {
+            players[i] = spinners.get(i).getItemName();
+        }
+        Game game = new Game(gameType, Arrays.asList(players), winner, date);
 
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+
+        databaseReference.child(user.getUid()).setValue(game);
+        System.out.println("Game Added");
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == addGameButton){
+            addGame(playerSpinners, winnerSpinner);
+        }
     }
 }
