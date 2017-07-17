@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText editTextPassword;
     private TextView textViewSignin;
     private ProgressDialog progressDialog;
+    private DatabaseReference databaseReference;
 
     private FirebaseAuth firebaseAuth;
 
@@ -42,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editTextEmail = (EditText) findViewById(R.id.editEmailText);
         editTextPassword = (EditText) findViewById(R.id.editPasswordText);
         textViewSignin = (TextView) findViewById(R.id.textViewSignin);
+        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         if (firebaseAuth.getCurrentUser() != null){
             finish();
