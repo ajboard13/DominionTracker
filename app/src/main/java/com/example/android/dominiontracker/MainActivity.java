@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void registerUser(){
-        String email = editTextEmail.getText().toString().trim();
+        final String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
         if(TextUtils.isEmpty(email)){
@@ -80,6 +80,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //user is successfully registered and logged in
                     //we will start the profile activity here
                     //right now lets display a toast only
+                    databaseReference.child("Players").child(firebaseAuth.getCurrentUser().getUid()).setValue(new Player(email));
+                    System.out.println("Game Added");
 
                     Toast.makeText(MainActivity.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
                     finish();

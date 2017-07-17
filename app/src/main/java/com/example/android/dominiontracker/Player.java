@@ -5,7 +5,7 @@ package com.example.android.dominiontracker;
  */
 
 public class Player {
-    private String userName;
+    private String userName = "";
     private String email;
     private boolean isAdmin = false;
     private int twoPlayerWins = 0;
